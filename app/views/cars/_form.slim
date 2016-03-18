@@ -1,0 +1,35 @@
+.col-lg-10.col-lg-offset-0
+  br
+  = form_for @car, :html => { multipart: true, class: 'form-inline'} do |f|
+    fieldset
+      .row
+        .form-group
+          .col-lg-3
+            = f.text_field :name, placeholder: 'Наименование', class: 'form-control'
+
+        .form-group
+          .col-lg-3
+            = f.text_field :auto_number, placeholder: 'Гос.номер', class: 'form-control'
+      .row
+        .form-group
+          .col-lg-3
+            = f.text_field :pts_number, placeholder: 'Номер ПТС', class: 'form-control'
+
+        .form-group
+          .col-lg-3
+            = f.text_field :pts_date, placeholder: 'Дата ПТС', 'data-provide' => 'datepicker', class: 'datepicker', 'data-date-format' => 'yyyy/mm/dd', 'data-date-language' => 'ru'
+      .row
+        h3 Список Фотографий:
+        .col-lg-10
+          - @car.pictures.each do |picture|
+            = image_tag picture.photo.url(:medium), style: "border: 1px solid black"
+      hr
+        .form-group
+
+          = file_field_tag "photos[]", type: :file, multiple: true, class: 'col-lg-offset-1', accept: 'image/png, image/jpg, image/jpeg'
+      hr
+      .row
+        .form-group
+          .col-lg-12.col-lg-offset-3
+            = f.submit class: 'btn btn-primary'
+            =< link_to :back, cars_path, class: 'btn btn-default'

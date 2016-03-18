@@ -1,0 +1,28 @@
+h2 Список автомобилей
+table.table.table-bordered.table-hover
+  thead
+    tr
+      th = '#'
+      th = 'Наименовние'
+      th = 'Гос. номер'
+      th = 'ПТС'
+      th = 'Дата ПТС'
+      th = 'Фото'
+      th = link_to 'Новый', new_car_path, class: 'btn btn-success'
+
+  tbody
+    - @cars.each do |car|
+      tr
+        td = car.id
+        td = car.name
+        td = car.auto_number
+        td = car.pts_number
+        td = car.pts_date
+        td = '*' unless car.pictures.empty?
+        td
+          = link_to 'Редактировать', edit_car_path(car), class: 'btn btn-info'
+          = link_to 'Удалить', car_path(car), method: :delete, class: 'btn btn-danger'
+    td
+      span Всего:
+      =< @cars.count
+    td colspan='6'
