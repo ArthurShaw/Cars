@@ -53,3 +53,4 @@ gem 'slim-rails'
 
 gem 'paperclip'
 
+gem 'rails_12factor', group: :production
