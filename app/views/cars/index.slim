@@ -17,7 +17,7 @@ table.table.table-bordered.table-hover
         td = car.name
         td = car.auto_number
         td = car.pts_number
-        td = car.pts_date.strftime("%d/%m/%Y")
+        td = car.try(:pts_date).try(:strftime, '%d/%m/%Y')
         td = '*' unless car.pictures.empty?
         td
           = link_to 'Редактировать', edit_car_path(car), class: 'btn btn-info'
